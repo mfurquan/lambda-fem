@@ -1,0 +1,28 @@
+(load "vblas")
+(load "main")
+(load "local")
+
+(define (matrix-add-to! matrix loc val)
+  (let ((i (car loc))
+	(j (cadr loc)))
+    (matrix-set! matrix i j (+ (matrix-ref matrix i j) val))))
+
+(define F_K (make-matrix no-dof (+ no-dof 1) 0))
+
+(define (assemble-one-elem M me loc)
+  (for-each (lambda (v p)
+	      (for-each (lambda (val loc)
+			  (if (and (> (car loc) 0) (> (cadr loc)))
+			    (matrix-add-to! M loc val)))
+			v p))
+	    me loc))
+
+(define (assemble-all)
+  (for-each (lambda (elem-mat id-mat)
+	      (assemble-one-elem F_K elem-mat id-mat))
+	    (map (lambda (ien)
+		   (f_k-ele (x-ele ien)))
+		 (element mesh))
+	    (map (lambda (ien)
+		   (loc-mat (id-ele ien)))
+		 (element mesh))))
