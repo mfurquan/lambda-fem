@@ -2,7 +2,7 @@
 (load "integrate")
 
 (define degree 1)
-(define no-elem 2)
+(define no-elem 5)
 
 (define mesh (mesh-segment 0 1 degree no-elem))
 
