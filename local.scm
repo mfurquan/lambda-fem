@@ -1,6 +1,6 @@
-(load "lblas")
-(load "shape-fns")
-(load "inner-prod")
+;(load "lblas")
+;(load "shape-fns")
+;(load "inner-prod")
 
 (define (f x) 1)
 

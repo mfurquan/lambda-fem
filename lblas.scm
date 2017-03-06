@@ -1,4 +1,4 @@
-(load "utils")
+;(load "utils")
 
 (define (linspace a b N)
   (let ((h (/ (- b a) (- N 1))))

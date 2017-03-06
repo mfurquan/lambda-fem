@@ -1,0 +1,7 @@
+(define (gaus-elim aug-mat)
+  (let ((no-rows (vector-length aug-mat))
+	(no-cols (vector-length aug-mat)))
+    (define (triangulate matrix)
+      ())
+    (triangulate aug-mat)
+    (back-substitute)))

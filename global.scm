@@ -1,12 +1,16 @@
-(load "vblas")
-(load "main")
-(load "local")
-
+;(load "vblas")
+;(load "main")
+;(load "local")
+;
 (define (matrix-add-to! matrix loc val)
   (let ((i (car loc))
 	(j (cadr loc)))
-    (if (and (> i -1) (> j -1))
-      (matrix-set! matrix i j (+ (matrix-ref matrix i j) val)))))
+    (cond ((and (> i -1) (> j -1))
+	   (matrix-set! matrix i j (+ (matrix-ref matrix i j)
+				      val)))
+	  ((and (> i -1) (< j 0))
+	   (matrix-set! matrix i 0 (- (matrix-ref matrix i 0)
+				      (* val g)))))))
 
 (define F_K (make-matrix no-dof (+ no-dof 1) 0))
 
@@ -23,4 +27,5 @@
 	    (map (lambda (ien)
 		   (f_k-ele (x-ele ien)))
 		 (element mesh))
-	    (map loc-mat (element mesh))))
+	    (map loc-mat (element mesh)))
+  (matrix-add-to! F_K (list (id mesh no-dof) 0) h))

@@ -1,8 +1,4 @@
-(load "lblas")
-
-(define degree 1)
-
-;--------------------------------------------------------------
+;(load "lblas")
 
 (define ref-nods (linspace -1 1 (+ degree 1)))
 

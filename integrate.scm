@@ -1,4 +1,4 @@
-(load "utils")
+;(load "utils")
 
 (define (gauss-legendre npts)
   (cond ((= npts 1) '((2) (0)))

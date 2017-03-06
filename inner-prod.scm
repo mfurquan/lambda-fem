@@ -1,4 +1,4 @@
-(load "integrate")
+;(load "integrate")
 
 (define (inner-11 f g xi2x intg-rule)
   (integrate (lambda (xi)

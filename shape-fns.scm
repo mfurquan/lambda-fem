@@ -1,4 +1,4 @@
-(load "interpolation")
+;(load "interpolation")
 
 (define N (map (lambda (i)
 		 (list (lambda (x) (lagr    i x))
