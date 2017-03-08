@@ -56,4 +56,3 @@
   (let ((n (- (vector-length vec) 1)))
     (iter n)))
 
-(define (vector:map proc vec))

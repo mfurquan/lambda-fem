@@ -29,7 +29,8 @@
 (define (loc-mat elem-con)
   (let ((id-lst (id-ele elem-con)))
     (augment
-      (outer (lambda (i j)
-	       (if (> j -1) (list i (+ j 1)) (list i j)))
-	       id-lst id-lst)
-      (map (lambda (i) (list i 0)) id-lst))))
+      (outer (lambda (i j) (list i j))
+	     id-lst
+	     id-lst)
+      (map (lambda (i) (list i no-dof))
+	   id-lst))))

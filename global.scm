@@ -9,10 +9,10 @@
 	   (matrix-set! matrix i j (+ (matrix-ref matrix i j)
 				      val)))
 	  ((and (> i -1) (< j 0))
-	   (matrix-set! matrix i 0 (- (matrix-ref matrix i 0)
+	   (matrix-set! matrix i no-dof (- (matrix-ref matrix i no-dof)
 				      (* val g)))))))
 
-(define F_K (make-matrix no-dof (+ no-dof 1) 0))
+(define K_F (make-matrix no-dof (+ no-dof 1) 0))
 
 (define (assemble-one-elem M me loc)
   (for-each (lambda (v p)
@@ -23,9 +23,9 @@
 
 (define (assemble-all)
   (for-each (lambda (elem-mat id-mat)
-	      (assemble-one-elem F_K elem-mat id-mat))
+	      (assemble-one-elem K_F elem-mat id-mat))
 	    (map (lambda (ien)
 		   (f_k-ele (x-ele ien)))
 		 (element mesh))
 	    (map loc-mat (element mesh)))
-  (matrix-add-to! F_K (list (id mesh no-dof) 0) h))
+  (matrix-add-to! K_F (list (id mesh no-dof) no-dof) h))

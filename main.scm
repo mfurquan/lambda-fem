@@ -12,7 +12,7 @@
 (load "lblas")
 (load "vblas")
 (load "interpolation")
-(load "local")
+;(load "local")
 
 (define mesh (mesh-segment 0 1 degree no-elem))
 
@@ -20,8 +20,15 @@
 
 (define no-dof (- no-node 1))
 
+(load "local")
 (load "global")
 
 (define intg-rule (gauss-legendre (ceiling (/ (+ degree 1) 2))))
 
 (assemble-all)
+
+(load "matrix")
+
+(define M (list no-dof (+ no-dof 1) K_F))
+(triangulate M)
+(define u (back-subs M))
